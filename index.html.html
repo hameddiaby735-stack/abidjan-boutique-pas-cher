@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABIDJAN TECH SHOP</title>
+
+<style>
+body { font-family: Arial; margin:0; background:#f5f5f5; }
+
+header {
+    background:black;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+header h1 { margin:0; color:red; }
+header p { margin:5px; }
+
+#promo {
+    background:red;
+    color:white;
+    text-align:center;
+    padding:10px;
+    font-weight:bold;
+}
+
+#panier {
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:10px;
+}
+
+.boutique {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    padding:20px;
+}
+
+.produit {
+    background:white;
+    width:260px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 5px 10px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+.produit:hover {
+    transform: scale(1.05);
+}
+
+.produit img {
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+
+.infos {
+    padding:10px;
+}
+
+.prix {
+    color:red;
+    font-weight:bold;
+    font-size:18px;
+}
+
+button {
+    width:100%;
+    padding:10px;
+    border:none;
+    margin-top:5px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.ajouter {
+    background:black;
+    color:white;
+}
+
+.whatsapp {
+    background:#25D366;
+    color:white;
+}
+
+.commander {
+    background:red;
+    color:white;
+    font-size:18px;
+}
+
+.contact {
+    background:black;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>ABIDJAN TECH SHOP</h1>
+<p>🔥 PROMOS CHOC SUR TOUS VOS APPAREILS 📱</p>
+</header>
+
+<div id="promo">
+🚀 Livraison rapide partout en Côte d’Ivoire
+</div>
+
+<div id="panier">
+🛒 Articles : <span id="count">0</span> | Total : <span id="total">0</span> FCFA
+</div>
+
+<div class="boutique">
+
+<div class="produit">
+<img src="https://picsum.photos/260/160?1">
+<div class="infos">
+<h3>iPhone XR</h3>
+<p>Comme neuf</p>
+<div class="prix">295000 FCFA</div>
+
+<button class="ajouter" onclick="ajouter('iPhone XR',295000)">Ajouter</button>
+
+<a href="https://wa.me/2250719949973?text=Bonjour je veux commander iPhone XR" target="_blank">
+<button class="whatsapp">Commander</button>
+</a>
+
+</div>
+</div>
+
+<div class="produit">
+<img src="https://picsum.photos/260/160?2">
+<div class="infos">
+<h3>AirPods</h3>
+<p>Qualité originale</p>
+<div class="prix">45000 FCFA</div>
+
+<button class="ajouter" onclick="ajouter('AirPods',45000)">Ajouter</button>
+
+<a href="https://wa.me/2250719949973?text=Bonjour je veux commander AirPods" target="_blank">
+<button class="whatsapp">Commander</button>
+</a>
+
+</div>
+</div>
+
+</div>
+
+<div style="padding:20px; text-align:center;">
+<button class="commander" onclick="commander()">🔥 Commander tout maintenant</button>
+</div>
+
+<div class="contact">
+<h2>Contact</h2>
+<p>📞 07 19 94 99 73</p>
+<p>📍 Abidjan</p>
+<p>🚚 Livraison partout en Côte d’Ivoire</p>
+</div>
+
+<script>
+let panier = [];
+
+function ajouter(nom, prix) {
+    panier.push({nom, prix});
+    document.getElementById('count').innerText = panier.length;
+
+    let total = 0;
+    panier.forEach(p => total += p.prix);
+    document.getElementById('total').innerText = total;
+}
+
+function commander() {
+    if(panier.length === 0){
+        alert("Panier vide !");
+        return;
+    }
+
+    let message = "Bonjour je veux commander :%0A";
+    let total = 0;
+
+    panier.forEach(p => {
+        message += "- " + p.nom + " : " + p.prix + " FCFA%0A";
+        total += p.prix;
+    });
+
+    message += "%0ATotal : " + total + " FCFA";
+
+    window.open("https://wa.me/2250719949973?text=" + message);
+}
+</script>
+
+</body>
+</html>
